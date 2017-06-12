@@ -9,7 +9,7 @@ class CLIController
   def run
     make_new_dogs
     add_dogs_details
-    #start
+    start
   end
 
   def make_new_dogs
@@ -22,6 +22,18 @@ class CLIController
       details = Scraper.scrape_breed_page(dog.breed_url)
       dog.add_dog_details(details)
     end
+  end
+
+  def start
+    list
+
+
+  end
+
+  def list
+    puts "Top 10 dogs for apartments:"
+    Dog.all.each.with_index(1) {|dog, i| puts "#{i}. #{dog.breed}"}
+    puts "Enter a number to learn details"
   end
 
 end
