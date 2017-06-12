@@ -11,11 +11,12 @@ class Scraper
       {
         :breed => dog_card.css("h2 a").text,
         :description => dog_card.css("p").text.gsub(".", ""),
-        :breed_url => dog_card.css("a").attr("href").value
+        :breed_url => "http://www.akc.org" + dog_card.css("a").attr("href").value
       }
 
     end
   end
+
 
   # Scraper.scrape_breed_page("http://www.akc.org/dog-breeds/bulldog/")
 
