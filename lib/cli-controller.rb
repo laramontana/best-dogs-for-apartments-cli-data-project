@@ -26,14 +26,24 @@ class CLIController
 
   def start
     list
-
-
   end
 
   def list
-    puts "Top 10 dogs for apartments:"
+    puts " "
+    puts "Top 10 dogs for apartments:".colorize(:red)
     Dog.all.each.with_index(1) {|dog, i| puts "#{i}. #{dog.breed}"}
-    puts "Enter a number to learn details"
+    puts " "
+    puts "Enter a number of a dog to learn details".colorize(:blue)
+
+    @answer = gets.strip.to_i
+    details
+  end
+
+  def details
+    puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
+    puts "COAT & GROOMING: ".colorize(:blue) + "#{Dog.all[@answer-1].coat_and_grooming}"
+    puts "HEALTH: ".colorize(:blue) + "#{Dog.all[@answer-1].health}"
+    puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}" 
   end
 
 end
