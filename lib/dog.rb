@@ -13,7 +13,7 @@ class Dog
   end
 
 # dog_main_info
-# Dog.new({:breed=>"Bulldog",
+# a = Dog.new({:breed=>"Bulldog",
 #   :description=>"Calm, courageous, and friendly; dignified but amusing",
 #   :breed_url=>"/dog-breeds/bulldog/"})
 
@@ -34,5 +34,17 @@ class Dog
   #  {:breed=>"Cavalier King Charles Spaniel",
   #   :description=>"Affectionate, graceful, and gentle",
   #   :breed_url=>"/dog-breeds/cavalier-king-charles-spaniel/"}])
+  def add_dog_new_info(dog_new_info)
+    dog_new_info.each do |k, v|
+      self.send("#{k}=", v)
+    end
+  end
+
+  # a.add_dog_new_info({:nutrition_and_feeding=>
+  #   "Good nutrition for Bulldogs is very important from puppyhood to his senior years.",
+  #  :coat_and_grooming=>"The breed requires minimal grooming and exercise. ",
+  #  :exercise=>
+  #   "Not Very Active; Bulldogs won't beg to be exercised, but they require regular walks and the occasional romp.",
+  #  :health=>"Bulldogs are generally a healthy breed."})
 
 end
