@@ -34,8 +34,8 @@ class Dog
   #  {:breed=>"Cavalier King Charles Spaniel",
   #   :description=>"Affectionate, graceful, and gentle",
   #   :breed_url=>"/dog-breeds/cavalier-king-charles-spaniel/"}])
-  def add_dog_new_info(dog_new_info)
-    dog_new_info.each do |k, v|
+  def add_dog_details(details)
+    details.each do |k, v|
       self.send("#{k}=", v)
     end
   end
