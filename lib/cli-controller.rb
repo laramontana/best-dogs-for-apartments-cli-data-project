@@ -60,6 +60,7 @@ class CLIController
       case answer
       when "more" then open_in_browser
       when "back" then list
+      when "exit" then exit
       else puts "Invalid input, please try again"
       end
     end
@@ -79,6 +80,6 @@ class CLIController
       else puts "Invalid input, please try again"
       end
     end
-  end 
+  end
 
 end
