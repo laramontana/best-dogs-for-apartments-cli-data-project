@@ -4,7 +4,6 @@ require 'pry'
 
 class Scraper
 
-# Scraper.scrape_main_page("http://www.akc.org/dog-breeds/best-dogs-for-apartments/")
   def self.scrape_main_page(main_page_url)
     doc = Nokogiri::HTML(open("#{main_page_url}"))
     doc.css("div .scale-contents").collect do |dog_card|
@@ -13,12 +12,8 @@ class Scraper
         :description => dog_card.css("p").text.gsub(".", ""),
         :breed_url => "http://www.akc.org" + dog_card.css("a").attr("href").value
       }
-
     end
   end
-
-
-  # Scraper.scrape_breed_page("http://www.akc.org/dog-breeds/bulldog/")
 
   def self.scrape_breed_page(breed_page_url)
     doc = Nokogiri::HTML(open("#{breed_page_url}"))
@@ -32,6 +27,4 @@ class Scraper
     end
     new_info
   end
-
-
 end

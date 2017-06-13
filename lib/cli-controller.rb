@@ -1,5 +1,6 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/dog.rb"
+require 'open-uri'
 require 'nokogiri'
 require 'colorize'
 
@@ -41,8 +42,7 @@ class CLIController
       menu
     end
   end
-
-
+  
   def details
     puts "#{Dog.all[@answer-1].breed}".upcase.colorize(:red)
     puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
@@ -67,8 +67,9 @@ class CLIController
   end
 
   def open_in_browser
-    puts "#{Dog.all[@answer-1].breed_url}"
-    # system("open'#{Dog.all[@answer-1].breed_url}'")
+    puts "Please check #{Dog.all[@answer-1].breed_url} for for information!"
+    #system("open #{Dog.all[@answer-1].breed_url}") => Couldn't get a file descriptor referring to the console
+
     answer = nil
     while answer != "n"
       puts "Would you like to start over again? Y/N".colorize(:blue)
