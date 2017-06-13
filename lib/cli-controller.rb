@@ -9,7 +9,7 @@ class CLIController
   def run
     make_new_dogs
     add_dogs_details
-    start
+    list
   end
 
   def make_new_dogs
@@ -22,10 +22,6 @@ class CLIController
       details = Scraper.scrape_breed_page(dog.breed_url)
       dog.add_dog_details(details)
     end
-  end
-
-  def start
-    list
   end
 
   def list
@@ -43,7 +39,7 @@ class CLIController
     puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
     puts "COAT & GROOMING: ".colorize(:blue) + "#{Dog.all[@answer-1].coat_and_grooming}"
     puts "HEALTH: ".colorize(:blue) + "#{Dog.all[@answer-1].health}"
-    puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}" 
+    puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}"
   end
 
 end

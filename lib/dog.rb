@@ -3,14 +3,15 @@ class Dog
 
   @@all = []
 
-  def initialize(dog_main_info)
-    dog_main_info.each {|k,v| self.send("#{k}=", v)}
-    @@all << self
-  end
-
   def self.all
     @@all
   end
+
+  def initialize(dog_main_info)
+    dog_main_info.each {|k,v| self.send("#{k}=", v)}
+    self.class.all << self
+  end
+
 
 # dog_main_info
 # a = Dog.new({:breed=>"Bulldog",
