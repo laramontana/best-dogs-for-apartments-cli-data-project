@@ -25,15 +25,24 @@ class CLIController
   end
 
   def list
-    puts " "
-    puts "Top 10 dogs for apartments:".colorize(:red)
-    Dog.all.each.with_index(1) {|dog, i| puts "#{i}. #{dog.breed}"}
-    puts " "
-    puts "Enter a number of a dog to learn details".colorize(:blue)
+    @answer = nil
+      while @answer != "exit"
+      puts " "
+      puts "Top 10 dogs for apartments:".colorize(:red)
+      Dog.all.each.with_index(1) {|dog, i| puts "#{i}. #{dog.breed}"}
+      puts " "
+      puts "Enter a number of a dog to learn details".colorize(:blue)
 
-    @answer = gets.strip.to_i
-    details
+      @answer = gets.strip.to_i
+
+      if  @answer.between?(1, Dog.all.size)
+         details
+       elsif !@answer.between?(1, Dog.all.size) || !@answer.class.integer?
+         puts "Invalid input, please try again"
+       end
+    end
   end
+
 
   def details
     puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
