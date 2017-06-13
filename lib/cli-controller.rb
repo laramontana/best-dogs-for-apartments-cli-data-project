@@ -25,8 +25,8 @@ class CLIController
   end
 
   def list
-    @answer = nil
-      while @answer != "exit"
+    # @answer = nil
+    #   while @answer != "exit"
       puts " "
       puts "Top 10 dogs for apartments:".colorize(:red)
       Dog.all.each.with_index(1) {|dog, i| puts "#{i}. #{dog.breed}"}
@@ -40,7 +40,7 @@ class CLIController
        elsif !@answer.between?(1, Dog.all.size) || !@answer.class.integer?
          puts "Invalid input, please try again"
        end
-    end
+    #end
   end
 
 
@@ -49,6 +49,26 @@ class CLIController
     puts "COAT & GROOMING: ".colorize(:blue) + "#{Dog.all[@answer-1].coat_and_grooming}"
     puts "HEALTH: ".colorize(:blue) + "#{Dog.all[@answer-1].health}"
     puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}"
+    puts " "
+    puts "Enter 'more' to learn more about this breed".colorize(:blue)
+    puts "Enter 'back' to go back to the list of all breeds".colorize(:blue)
+
+    @detail_answer = gets.strip
+
+    if  @detail_answer.downcase == "more"
+       open_in_browser
+       puts "Enter 'back' to go back to the list of all breeds".colorize(:blue)
+       puts "Enter 'exit' to exit".colorize(:blue)
+     elsif @detail_answer.downcase == "back"
+       list
+     elsif @detail_answer.downcase != "more" && @detail_answer.downcase != "back"
+       puts "Invalid input, please try again"
+     end
+
+  end
+
+  def open_in_browser
+    puts "Dog page is opening"
   end
 
 end
