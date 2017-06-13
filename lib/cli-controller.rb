@@ -50,19 +50,19 @@ class CLIController
     puts "HEALTH: ".colorize(:blue) + "#{Dog.all[@answer-1].health}"
     puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}"
     puts " "
-    puts "Enter 'more' to learn more about this breed".colorize(:blue)
-    puts "Enter 'back' to go back to the list of all breeds".colorize(:blue)
 
-    @detail_answer = gets.strip
+    @detail_answer = nil
+    while @detail_answer != "exit"
+      puts "Type 'more' to learn more about this breed or 'back' to go back to the list of all breeds".colorize(:blue)
+      puts "or type 'exit'".colorize(:blue)
 
-    if  @detail_answer.downcase == "more"
-       open_in_browser
-     elsif @detail_answer.downcase == "back"
-       list
-     elsif @detail_answer.downcase != "more" && @detail_answer.downcase != "back"
-       puts "Invalid input, please try again"
-     end
-
+      @detail_answer = gets.strip.downcase
+      case @detail_answer
+      when "more" then open_in_browser
+      when "back" then list
+      else puts "Invalid input, please try again"
+      end
+    end
   end
 
   def open_in_browser
