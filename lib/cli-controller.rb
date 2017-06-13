@@ -66,7 +66,7 @@ class CLIController
   end
 
   def open_in_browser
-    puts "Please check #{Dog.all[@answer-1].breed_url} for for information!"
+    puts "Please check #{Dog.all[@answer-1].breed_url} for more information!"
     #system("open #{Dog.all[@answer-1].breed_url}") => Couldn't get a file descriptor referring to the console
 
     answer = nil
