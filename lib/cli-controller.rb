@@ -1,6 +1,5 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/dog.rb"
-require 'open-uri'
 require 'nokogiri'
 require 'colorize'
 
@@ -42,7 +41,7 @@ class CLIController
       menu
     end
   end
-  
+
   def details
     puts "#{Dog.all[@answer-1].breed}".upcase.colorize(:red)
     puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
