@@ -51,13 +51,13 @@ class CLIController
     puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}"
     puts " "
 
-    @detail_answer = nil
-    while @detail_answer != "exit"
+    answer = nil
+    while answer != "exit"
       puts "Type 'more' to learn more about this breed or 'back' to go back to the list of all breeds".colorize(:blue)
       puts "or type 'exit'".colorize(:blue)
 
-      @detail_answer = gets.strip.downcase
-      case @detail_answer
+      answer = gets.strip.downcase
+      case answer
       when "more" then open_in_browser
       when "back" then list
       else puts "Invalid input, please try again"
@@ -66,22 +66,19 @@ class CLIController
   end
 
   def open_in_browser
-
     puts "#{Dog.all[@answer-1].breed_url}"
-
     # system("open'#{Dog.all[@answer-1].breed_url}'")
+    answer = nil
+    while answer != "n"
+      puts "Would you like to start over again? Y/N".colorize(:blue)
 
-    puts "Would you like to star over again? Y/N".colorize(:blue)
-
-    @open_in_browser_answer = gets.strip
-
-    if  @open_in_browser_answer.downcase == "y"
-       list
-     elsif @open_in_browser_answer.downcase == "n"
-       exit
-     elsif @open_in_browser_answer.downcase != "y" && @open_in_browser_answer.downcase != "n"
-       puts "Invalid input, please try again"
-     end
-  end
+      answer = gets.strip
+      case answer
+      when "y" then list
+      when "n" then exit
+      else puts "Invalid input, please try again"
+      end
+    end
+  end 
 
 end
