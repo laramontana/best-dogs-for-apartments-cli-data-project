@@ -12,9 +12,9 @@ class Dog
     self.class.all << self
   end
 
-  def self.create_dogs_with_main_info(dogs_main_info)
-    dogs_main_info.each {|dog_main_info| new_dog = self.new(dog_main_info)}
-  end
+  #def self.create_dogs_with_main_info(dogs_main_info)
+  #  dogs_main_info.each {|dog_main_info| new_dog = self.new(dog_main_info)}
+  #end
 
   def add_dog_details(details)
     details.each {|k, v| self.send("#{k}=", v)}

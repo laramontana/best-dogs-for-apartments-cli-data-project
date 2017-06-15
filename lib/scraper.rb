@@ -6,12 +6,12 @@ class Scraper
 
   def self.scrape_main_page(main_page_url)
     doc = Nokogiri::HTML(open("#{main_page_url}"))
-    doc.css("div .scale-contents").collect do |dog_card|
-      {
+    doc.css("div .scale-contents").each do |dog_card|
+      Dog.new({
         :breed => dog_card.css("h2 a").text,
         :description => dog_card.css("p").text.gsub(".", ""),
         :breed_url => "http://www.akc.org" + dog_card.css("a").attr("href").value
-      }
+      })
     end
   end
 

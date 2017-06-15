@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+module BestDogs
+
+
+end
+
 require_relative "../lib/cli-controller.rb"
 
 CLIController.new.run

@@ -1,6 +1,6 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/dog.rb"
-require 'nokogiri'
+# require 'nokogiri'
 require 'colorize'
 
 class CLIController
@@ -8,20 +8,18 @@ class CLIController
 
   def run
     make_new_dogs
-    add_dogs_details
+    #add_dogs_details
     list
   end
 
   def make_new_dogs
-    dogs_main_info = Scraper.scrape_main_page(MAIN_PAGE)
-    Dog.create_dogs_with_main_info(dogs_main_info)
+    Scraper.scrape_main_page(MAIN_PAGE)
+    #Dog.create_dogs_with_main_info(dogs_main_info)
   end
 
-  def add_dogs_details
-    Dog.all.each do |dog|
+  def add_dogs_details(dog)
       details = Scraper.scrape_breed_page(dog.breed_url)
       dog.add_dog_details(details)
-    end
   end
 
   def list
@@ -36,18 +34,20 @@ class CLIController
     puts "Enter a number of a dog to learn details".colorize(:blue)
     @answer = gets.strip.to_i
     if @answer.between?(1, Dog.all.size)
-      details
+      dog = Dog.all[@answer-1]
+      add_dogs_details(dog)
+      details(dog)
     else puts "Invalid input, please try again"
       menu
     end
   end
 
-  def details
-    puts "#{Dog.all[@answer-1].breed}".upcase.colorize(:red)
-    puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{Dog.all[@answer-1].nutrition_and_feeding}"
-    puts "COAT & GROOMING: ".colorize(:blue) + "#{Dog.all[@answer-1].coat_and_grooming}"
-    puts "HEALTH: ".colorize(:blue) + "#{Dog.all[@answer-1].health}"
-    puts "EXERCISE: ".colorize(:blue) + "#{Dog.all[@answer-1].exercise}"
+  def details(dog)
+    puts "#{dog.breed}".upcase.colorize(:red)
+    puts "FEEDING & NUTRITION: ".colorize(:blue) + "#{dog.nutrition_and_feeding}"
+    puts "COAT & GROOMING: ".colorize(:blue) + "#{dog.coat_and_grooming}"
+    puts "HEALTH: ".colorize(:blue) + "#{dog.health}"
+    puts "EXERCISE: ".colorize(:blue) + "#{dog.exercise}"
     puts " "
 
     answer = nil
